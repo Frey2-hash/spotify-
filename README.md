@@ -230,35 +230,35 @@ FROM cleaned_dataset
 ```
 
 
- **Spotify Advanced SQL Project and Query Optimization** README, focusing on the query optimization task you performed. You can include the specific screenshots and graphs as described.
+ **Spotify Advanced SQL Project and Query Optimization** README, focusing on the query optimization task performed.
 
 ---
 
 ## Query Optimization Technique 
 
-To improve query performance, we carried out the following optimization process:
+To improve query performance, I carried out the following optimization process:
 
-- **Initial Query Performance Analysis Using `EXPLAIN`**
-    - We began by analyzing the performance of a query using the `EXPLAIN` function.
+- **Initial Query Performance Analysis Using the function `SET STATISTICS TIME ON`**
+    - I began by analyzing the performance of a query using the `SET STATISTICS ON` function.
     - The query retrieved tracks based on the `artist` column, and the performance metrics were as follows:
-        - Execution time (E.T.): **7 ms**
-        - Planning time (P.T.): **0.17 ms**
-    - Below is the **screenshot** of the `EXPLAIN` result before optimization:
-      ![EXPLAIN Before Index](https://github.com/najirh/najirh-Spotify-Data-Analysis-using-SQL/blob/main/spotify_explain_before_index.png)
+        - Execution time (E.T.): **8 ms**
+        - Parse time (P.T.): **3 ms**
+    - Below is the **screenshot** of the `SET STATISTICS TIME ON` result before optimization:
+      ![TIME Before Index](https://github.com/Frey2-hash/spotify-/blob/main/Time%20before%20index.png)
 
 - **Index Creation on the `artist` Column**
-    - To optimize the query performance, we created an index on the `artist` column. This ensures faster retrieval of rows where the artist is queried.
+    - To optimize the query performance, I created an index on the `artist` column. This ensures faster retrieval of rows where the artist is queried.
     - **SQL command** for creating the index:
       ```sql
-      CREATE INDEX idx_artist ON spotify_tracks(artist);
+      CREATE INDEX artist_index ON cleaned_dataset(artist);
       ```
 
 - **Performance Analysis After Index Creation**
     - After creating the index, we ran the same query again and observed significant improvements in performance:
-        - Execution time (E.T.): **0.153 ms**
-        - Planning time (P.T.): **0.152 ms**
-    - Below is the **screenshot** of the `EXPLAIN` result after index creation:
-      ![EXPLAIN After Index](https://github.com/najirh/najirh-Spotify-Data-Analysis-using-SQL/blob/main/spotify_explain_after_index.png)
+        - Execution time (E.T.): ** 1 ms**
+        - Parse time (P.T.): ** 2 ms**
+    - Below is the **screenshot** of the `SET STATISTICS TIME ON` result after index creation:
+      ![TIME After Index](https://github.com/najirh/najirh-Spotify-Data-Analysis-using-SQL/blob/main/spotify_explain_after_index.png)
 
 - **Graphical Performance Comparison**
     - A graph illustrating the comparison between the initial query execution time and the optimized query execution time after index creation.
